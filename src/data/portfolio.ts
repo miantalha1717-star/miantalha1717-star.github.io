@@ -175,12 +175,50 @@ export const skillGroups = [
   },
 ];
 
+export type FAQ = {
+  question: string;
+  answer: string;
+};
+
 export type ContactLink = {
   label: string;
   value: string;
   href: string;
   icon: "email" | "phone" | "linkedin" | "x" | "instagram" | "location";
 };
+
+export const faqs: FAQ[] = [
+  {
+    question: "Who is Mian Muhammad Talha Suleman?",
+    answer:
+      "Mian Muhammad Talha Suleman is a Pakistan-based entrepreneur and AI builder. He works across AI, e-commerce, manufacturing, electric vehicles, and emerging technology, turning ideas into active businesses.",
+  },
+  {
+    question: "What does Talha Suleman do?",
+    answer:
+      "He builds early-stage ventures. His current work includes a live e-commerce business, AI chatbot prototypes, research into EV and charging infrastructure, and market studies across steel, automotive, and dairy sectors in the GCC.",
+  },
+  {
+    question: "What skills does Talha Suleman have?",
+    answer:
+      "His skills span artificial intelligence, chatbot development, Python, e-commerce operations, business planning, market research, GCC market analysis, and technology strategy, supported by a problem-solving and innovation-focused mindset.",
+  },
+  {
+    question: "Where is Talha Suleman based?",
+    answer:
+      "He is based in Pakistan and actively researches opportunities across Pakistan and Gulf Cooperation Council countries.",
+  },
+  {
+    question: "Is Talha Suleman open to collaborations or investment?",
+    answer:
+      "Yes. He is open to collaborations, university opportunities, investment conversations, and business partnerships. The fastest way to reach him is by email at miantalha1717@gmail.com or phone at +92 325 8407786.",
+  },
+  {
+    question: "How can I contact Talha Suleman?",
+    answer:
+      "You can email miantalha1717@gmail.com, call or message +92 325 8407786, or connect via LinkedIn, X, and Instagram.",
+  },
+];
 
 // TODO: replace placeholder "#" URLs with real profile links once available.
 export const contacts: ContactLink[] = [

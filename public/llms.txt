@@ -1,0 +1,17 @@
+# Mian Muhammad Talha Suleman
+
+> Pakistan-based entrepreneur and AI builder working across AI, e-commerce, manufacturing, electric vehicles, and emerging technology. Founder of a live e-commerce business and a portfolio of in-development AI and research ventures.
+
+## About
+- [Mian Muhammad Talha Suleman — Portfolio](https://miantalha1717-star.github.io/): Personal site of an entrepreneur and AI builder based in Pakistan. Profile, ventures, skills, education, and contact.
+
+## Contact
+- Email: miantalha1717@gmail.com
+- Phone: +92 325 8407786
+- LinkedIn: miantalha17
+- X (Twitter): @miantalha17
+- Instagram: @miantalha17__
+
+## Optional
+- [llms-full.txt](https://miantalha1717-star.github.io/llms-full.txt): Full plain-text version of the site for LLM ingestion.
+- [Sitemap](https://miantalha1717-star.github.io/sitemap.xml): XML sitemap.

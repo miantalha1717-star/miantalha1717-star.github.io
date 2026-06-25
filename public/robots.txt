@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://miantalha1717-star.github.io/sitemap.xml
