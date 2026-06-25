@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mian Muhammad Talha Suleman | Entrepreneur & AI Builder</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #050810;
+    --deep: #0b0f1e;
+    --panel: #0f1629;
+    --border: rgba(99,179,255,0.12);
+    --glow: #38bdf8;
+    --glow2: #818cf8;
+    --glow3: #34d399;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --white: #f8fafc;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── AMBIENT ORBS ── */
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.18;
+  }
+  .orb-1 { width:600px; height:600px; background:#1e40af; top:-200px; left:-200px; }
+  .orb-2 { width:500px; height:500px; background:#0e7490; bottom:-150px; right:-150px; }
+  .orb-3 { width:300px; height:300px; background:#4f46e5; top:50%; left:50%; transform:translate(-50%,-50%); }
+
+  /* ── LAYOUT ── */
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; position: relative; z-index:1; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top:0; left:0; right:0; z-index: 100;
+    padding: 16px 0;
+    background: rgba(5,8,16,0.7);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .wrap { display:flex; align-items:center; justify-content:space-between; }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--glow), var(--glow2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+  }
+  .nav-links { display:flex; gap:28px; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--glow); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 0 80px;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(56,189,248,0.08);
+    border: 1px solid rgba(56,189,248,0.25);
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--glow);
+    margin-bottom: 28px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--glow);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity:1; }
+    50% { opacity:0.3; }
+  }
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.6rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .hero-name span {
+    background: linear-gradient(135deg, var(--glow) 0%, var(--glow2) 60%, var(--glow3) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .hero-desc {
+    font-size: 1.08rem;
+    color: #94a3b8;
+    max-width: 580px;
+    margin-bottom: 40px;
+    line-height: 1.8;
+  }
+  .hero-actions { display:flex; gap:14px; flex-wrap:wrap; }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--glow), var(--glow2));
+    color: #050810;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: 0.25s;
+    letter-spacing: 0.01em;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(56,189,248,0.35); }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: 0.25s;
+  }
+  .btn-ghost:hover { border-color: var(--glow); color: var(--glow); }
+
+  /* ── STAT STRIP ── */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 60px;
+  }
+  .stat {
+    background: var(--panel);
+    padding: 24px 28px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--glow), var(--glow2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .stat-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
+
+  /* ── SECTIONS ── */
+  section { padding: 90px 0; }
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--glow);
+    margin-bottom: 10px;
+  }
+  .section-heading {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+  .section-sub {
+    color: var(--muted);
+    font-size: 1rem;
+    max-width: 540px;
+    margin-bottom: 48px;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px 28px;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .card:hover {
+    border-color: rgba(56,189,248,0.35);
+    transform: translateY(-3px);
+  }
+  .card-icon {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    display: flex; align-items:center; justify-content:center;
+    font-size: 1.3rem;
+    margin-bottom: 14px;
+  }
+  .card-icon.cyan { background: rgba(56,189,248,0.1); }
+  .card-icon.indigo { background: rgba(129,140,248,0.1); }
+  .card-icon.green { background: rgba(52,211,153,0.1); }
+  .card-icon.amber { background: rgba(251,191,36,0.1); }
+  .card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .card p, .card li { font-size: 0.92rem; color: #94a3b8; }
+  .card ul { list-style: none; padding: 0; }
+  .card ul li {
+    padding: 5px 0;
+    padding-left: 18px;
+    position: relative;
+  }
+  .card ul li::before {
+    content: '→';
+    position: absolute; left: 0;
+    color: var(--glow);
+    font-size: 0.8rem;
+  }
+
+  .grid-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; }
+  .grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+
+  /* ── ABOUT SPLIT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .about-text { font-size: 1rem; color: #94a3b8; line-height: 1.9; }
+  .about-text strong { color: var(--white); }
+  .about-text p + p { margin-top: 16px; }
+  .tag-cloud { display:flex; flex-wrap:wrap; gap:8px; margin-top:24px; }
+  .tag {
+    padding: 5px 13px;
+    border-radius: 999px;
+    background: rgba(56,189,248,0.07);
+    border: 1px solid rgba(56,189,248,0.18);
+    font-size: 0.78rem;
+    color: var(--glow);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── EDUCATION TIMELINE ── */
+  .timeline { display:flex; flex-direction:column; gap:0; }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 20px;
+    padding-bottom: 36px;
+    position: relative;
+  }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-dot {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--panel);
+    border: 2px solid var(--glow);
+    display: flex; align-items:center; justify-content:center;
+    font-size: 0.75rem;
+    color: var(--glow);
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .tl-item:not(:last-child) .tl-dot::after {
+    content:'';
+    position:absolute;
+    top: 28px; left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: calc(100% + 8px);
+    background: var(--border);
+  }
+  .tl-body { padding-bottom: 4px; }
+  .tl-body h3 { font-family:'Syne',sans-serif; font-size:1.05rem; font-weight:700; color:var(--white); }
+  .tl-body .tl-meta { font-size:0.8rem; color:var(--muted); margin-bottom:6px; letter-spacing:0.03em; }
+  .tl-body p { font-size:0.92rem; color:#94a3b8; }
+
+  /* ── ACHIEVEMENTS ── */
+  .ach-list { display:flex; flex-direction:column; gap:12px; }
+  .ach-item {
+    display: flex; align-items:flex-start; gap:16px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 22px;
+    transition: border-color 0.25s;
+  }
+  .ach-item:hover { border-color: rgba(52,211,153,0.4); }
+  .ach-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--glow3);
+    min-width: 36px;
+    line-height: 1;
+    padding-top: 2px;
+  }
+  .ach-text h4 { font-size:0.98rem; font-weight:600; color:var(--white); }
+  .ach-text p { font-size:0.86rem; color:var(--muted); margin-top:3px; }
+
+  /* ── SKILLS ── */
+  .skill-pill {
+    display: inline-flex; align-items:center; gap:8px;
+    padding: 9px 16px;
+    border-radius: 8px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    font-size: 0.87rem;
+    color: var(--text);
+    font-weight: 500;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .skill-pill:hover { border-color: var(--glow); color: var(--glow); }
+  .skills-cloud { display:flex; flex-wrap:wrap; gap:10px; }
+
+  /* ── CONTACT ── */
+  .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .contact-item {
+    display:flex; align-items:center; gap:14px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    text-decoration: none;
+    transition: border-color 0.25s;
+  }
+  .contact-item:hover { border-color: var(--glow); }
+  .contact-icon {
+    width:38px; height:38px;
+    border-radius:9px;
+    background: rgba(56,189,248,0.08);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.1rem;
+    flex-shrink:0;
+  }
+  .contact-label { font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; }
+  .contact-value { font-size:0.9rem; color:var(--white); font-weight:500; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 36px 0;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    position: relative; z-index:1;
+  }
+  footer span { color: var(--glow); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0;
+  }
+
+  @media (max-width: 720px) {
+    .about-grid, .grid-2, .grid-3, .contact-grid { grid-template-columns: 1fr; }
+    .stat-strip { grid-template-columns: 1fr; }
+    .nav-links { display:none; }
+  }
+</style>
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"FAQPage",
+ "mainEntity":[
+  {
+   "@type":"Question",
+   "name":"Who is Mian Muhammad Talha Suleman?",
+   "acceptedAnswer":{"@type":"Answer","text":"Mian Muhammad Talha Suleman is a Pakistani entrepreneur and AI builder focused on technology, e-commerce, manufacturing and emerging industries."}
+  },
+  {
+   "@type":"Question",
+   "name":"What industries are you interested in?",
+   "acceptedAnswer":{"@type":"Answer","text":"Artificial Intelligence, E-Commerce, Electric Vehicles, Manufacturing, Dairy Businesses and GCC industrial markets."}
+  },
+  {
+   "@type":"Question",
+   "name":"What are your future goals?",
+   "acceptedAnswer":{"@type":"Answer","text":"To study at a world-class university and build globally successful technology companies."}
+  }
+ ]
+}
+</script>
+
+</head>
+<body>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap">
+    <div class="nav-logo">MTS</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#ventures">Ventures</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">Available for Opportunities</div>
+    <div class="hero-name">Mian Muhammad<br><span>Talha Suleman</span></div>
+    <div class="hero-title">Entrepreneur · AI Builder · Multi-Business Founder</div>
+    <p class="hero-desc">
+      Building businesses from Pakistan that sit at the intersection of artificial intelligence, e-commerce, manufacturing, and emerging technology. Turning ideas into scalable ventures — one industry at a time.
+    </p>
+    <div class="hero-actions">
+      <a href="#ventures" class="btn-primary">↗ My Ventures</a>
+      <a href="#contact" class="btn-ghost">Get in Touch</a>
+    </div>
+
+    <div class="stat-strip">
+      <div class="stat">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Businesses Started</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Industries Explored</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Ambition</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-label">Who I Am</div>
+    <h2 class="section-heading">Builder by nature,<br>entrepreneur by choice.</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm <strong>Mian Muhammad Talha Suleman</strong> — an aspiring entrepreneur and AI innovator based in <strong>Pakistan</strong>. I don't wait for opportunity; I build it. From launching e-commerce operations to researching GCC industrial markets, I've already begun turning ideas into active businesses.</p>
+        <p>My focus areas span <strong>artificial intelligence, e-commerce, electric vehicles, dairy industries, chatbot platforms,</strong> and <strong>manufacturing</strong> — industries I believe will define the next decade. My goal is to study at a world-class university and scale these ventures globally.</p>
+        <div class="tag-cloud">
+          <span class="tag">Pakistan 🇵🇰</span>
+          <span class="tag">AI Enthusiast</span>
+          <span class="tag">Multi-Founder</span>
+          <span class="tag">GCC Markets</span>
+          <span class="tag">E-Commerce</span>
+          <span class="tag">Future-Focused</span>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:14px;">
+          <div class="card-icon cyan">🧠</div>
+          <h3>AI & Technology</h3>
+          <p>Exploring advanced AI assistants, chatbot platforms, and image/video generation systems as commercial products.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon green">📦</div>
+          <h3>E-Commerce & Business</h3>
+          <p>Already active in e-commerce — building and operating online business channels with a long-term scalability mindset.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="wrap">
+    <div class="section-label">Education</div>
+    <h2 class="section-heading">Academic Foundation</h2>
+    <p class="section-sub">A strong grounding in business, economics and social sciences — paired with self-driven AI education.</p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot">★</div>
+        <div class="tl-body">
+          <h3>A Levels — Business, Economics, Sociology & Politics</h3>
+          <div class="tl-meta">Strong Academic Performance</div>
+          <p>Built a rigorous analytical foundation across business strategy, macroeconomics, social theory, and political systems — directly applicable to building and scaling ventures.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">⚡</div>
+        <div class="tl-body">
+          <h3>Artificial Intelligence & Python</h3>
+          <div class="tl-meta">Self-Directed Learning · Ongoing</div>
+          <p>Completed AI learning programs with hands-on Python study, including building and experimenting with AI chatbot projects. Applying this knowledge directly to real products.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot">🎯</div>
+        <div class="tl-body">
+          <h3>World-Class University — Future Goal</h3>
+          <div class="tl-meta">Target: Top Global Institution</div>
+          <p>Working toward admission at a leading global university to deepen expertise in business, technology, and entrepreneurship — and build an international network.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- VENTURES / PROJECTS -->
+<section id="ventures">
+  <div class="wrap">
+    <div class="section-label">Ventures & Projects</div>
+    <h2 class="section-heading">What I'm Building</h2>
+    <p class="section-sub">Multiple active and exploratory ventures across technology, commerce, and industry.</p>
+
+    <div class="grid-2" style="margin-bottom:16px;">
+      <div class="card">
+        <div class="card-icon cyan">🛒</div>
+        <h3>E-Commerce Business</h3>
+        <ul>
+          <li>Already launched and operating an e-commerce venture</li>
+          <li>Building scalable online sales channels</li>
+          <li>Exploring product sourcing, branding & digital marketing</li>
+          <li>Targeting local and cross-border markets</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon indigo">🤖</div>
+        <h3>AI Chatbot Platform</h3>
+        <ul>
+          <li>Developing advanced AI assistant prototypes</li>
+          <li>Exploring image & video generation products</li>
+          <li>Research into monetizable SaaS AI tools</li>
+          <li>Python-based experimentation & testing</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-icon green">⚡</div>
+        <h3>Electric Vehicles</h3>
+        <p>Researching EV solutions and charging infrastructure opportunities in Pakistan and GCC markets.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon amber">🏭</div>
+        <h3>Manufacturing & GCC</h3>
+        <p>Active research in steel, automotive, dairy, and industrial sectors across Gulf Cooperation Council countries.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon cyan">🥛</div>
+        <h3>Dairy Business</h3>
+        <p>Exploring dairy as a high-potential agribusiness vertical — from production to modern distribution models.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="wrap">
+    <div class="section-label">Achievements</div>
+    <h2 class="section-heading">What I've Unlocked So Far</h2>
+    <p class="section-sub">Real milestones — not just aspirations.</p>
+
+    <div class="ach-list">
+      <div class="ach-item">
+        <div class="ach-num">01</div>
+        <div class="ach-text">
+          <h4>Completed AI & Python Learning Programs</h4>
+          <p>Self-driven education in artificial intelligence and Python programming, with hands-on project experimentation.</p>
+        </div>
+      </div>
+      <div class="ach-item">
+        <div class="ach-num">02</div>
+        <div class="ach-text">
+          <h4>Launched an Active E-Commerce Business</h4>
+          <p>Successfully started and operated an e-commerce venture — moving from idea to real commercial activity.</p>
+        </div>
+      </div>
+      <div class="ach-item">
+        <div class="ach-num">03</div>
+        <div class="ach-text">
+          <h4>Started Multiple Businesses</h4>
+          <p>Demonstrated serial entrepreneurial thinking by initiating multiple ventures across different industries simultaneously.</p>
+        </div>
+      </div>
+      <div class="ach-item">
+        <div class="ach-num">04</div>
+        <div class="ach-text">
+          <h4>Built & Experimented with AI Chatbot Projects</h4>
+          <p>Developed working AI chatbot prototypes, bridging technical skill with commercial product thinking.</p>
+        </div>
+      </div>
+      <div class="ach-item">
+        <div class="ach-num">05</div>
+        <div class="ach-text">
+          <h4>Active Research across GCC & Emerging Industries</h4>
+          <p>Deep market research in EV, steel, automotive, dairy, and manufacturing sectors across GCC countries.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="section-label">Skills</div>
+    <h2 class="section-heading">What I Bring</h2>
+    <p class="section-sub">A blend of technical capability, business acumen, and entrepreneurial drive.</p>
+
+    <div class="skills-cloud">
+      <div class="skill-pill">🤖 Artificial Intelligence</div>
+      <div class="skill-pill">💬 Chatbot Development</div>
+      <div class="skill-pill">🐍 Python Basics</div>
+      <div class="skill-pill">📦 E-Commerce Operations</div>
+      <div class="skill-pill">📋 Business Planning</div>
+      <div class="skill-pill">🔍 Market Research</div>
+      <div class="skill-pill">🚀 Entrepreneurship</div>
+      <div class="skill-pill">⚙️ Technology Strategy</div>
+      <div class="skill-pill">🧩 Problem Solving</div>
+      <div class="skill-pill">🌍 GCC Market Research</div>
+      <div class="skill-pill">📈 Business Development</div>
+      <div class="skill-pill">💡 Innovation Thinking</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+
+<div class="divider"></div>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-heading">Frequently Asked Questions</h2>
+    <p class="section-sub">Answers to common questions about my background, projects, and goals.</p>
+
+    <div class="ach-list">
+      <div class="ach-item">
+        <div class="ach-num">01</div>
+        <div class="ach-text">
+          <h4>Who is Mian Muhammad Talha Suleman?</h4>
+          <p>Mian Muhammad Talha Suleman is a Pakistani entrepreneur, AI builder, and business enthusiast focused on technology, e-commerce, manufacturing, and emerging industries.</p>
+        </div>
+      </div>
+
+      <div class="ach-item">
+        <div class="ach-num">02</div>
+        <div class="ach-text">
+          <h4>What industries are you interested in?</h4>
+          <p>Artificial Intelligence, E-Commerce, Electric Vehicles, Manufacturing, Dairy Businesses, SaaS products, and GCC industrial markets.</p>
+        </div>
+      </div>
+
+      <div class="ach-item">
+        <div class="ach-num">03</div>
+        <div class="ach-text">
+          <h4>What AI projects are you working on?</h4>
+          <p>I am exploring AI assistants, chatbot platforms, automation tools, and image and video generation technologies.</p>
+        </div>
+      </div>
+
+      <div class="ach-item">
+        <div class="ach-num">04</div>
+        <div class="ach-text">
+          <h4>What are your future goals?</h4>
+          <p>My goal is to attend a world-class university, build global technology companies, and create innovative products that solve real-world business problems.</p>
+        </div>
+      </div>
+
+      <div class="ach-item">
+        <div class="ach-num">05</div>
+        <div class="ach-text">
+          <h4>How can I contact you?</h4>
+          <p>You can contact me through email, phone, LinkedIn, X (Twitter), or Instagram using the links provided on this website.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-label">Get in Touch</div>
+    <h2 class="section-heading">Let's Build Something</h2>
+    <p class="section-sub">Open to collaborations, university opportunities, investment conversations, and business partnerships.</p>
+
+    <div class="contact-grid">
+      <a class="contact-item" href="mailto:miantalha1717@gmail.com">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value">miantalha1717@gmail.com</div>
+        </div>
+      </a>
+      <a class="contact-item" href="tel:+923258407786">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-label">Phone</div>
+          <div class="contact-value">+92 325 8407786</div>
+        </div>
+      </a>
+      <a class="contact-item" href="#">
+        <div class="contact-icon">💼</div>
+        <div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-value">miantalha17</div>
+        </div>
+      </a>
+      <a class="contact-item" href="#">
+        <div class="contact-icon">𝕏</div>
+        <div>
+          <div class="contact-label">X (Twitter)</div>
+          <div class="contact-value">@miantalha17</div>
+        </div>
+      </a>
+      <a class="contact-item" href="#">
+        <div class="contact-icon">📸</div>
+        <div>
+          <div class="contact-label">Instagram</div>
+          <div class="contact-value">@miantalha17__</div>
+        </div>
+      </a>
+      <div class="contact-item" style="cursor:default;">
+        <div class="contact-icon">🌍</div>
+        <div>
+          <div class="contact-label">Location</div>
+          <div class="contact-value">Pakistan 🇵🇰</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 <span>Mian Muhammad Talha Suleman</span> · Entrepreneur · AI Builder · Multi-Business Founder</p>
+</footer>
+
+</body>
+</html>
